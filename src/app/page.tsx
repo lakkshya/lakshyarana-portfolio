@@ -1,103 +1,126 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
+import Navbar from "@/components/Navbar";
+import Strip from "@/components/Strip";
+import Skills from "@/components/Skills";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (navRef.current) {
+        const navHeight = navRef.current.offsetHeight;
+        const nextSection = document.getElementById("mid-section");
+        if (!nextSection) return;
+
+        const rect = nextSection.getBoundingClientRect();
+        const distanceFromNavBottom = rect.top - navHeight;
+        // Change color when scroll position reaches the bottom of the navbar
+        setScrolled(distanceFromNavBottom <= 0);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div className="">
+      <Navbar scrolled={scrolled} navRef={navRef} />
+      {/* HERO SECTION - Fixed, doesn't scroll */}
+
+      <div className="pin-spacer w-full h-[85vh] lg:h-[110vh] relative box-border overflow-visible">
+        <div
+          className="w-full h-[85vh] lg:h-[120vh] fixed left-0 top-0 box-border"
+          style={{ transform: "translate(0px, 0px)" }}
+        >
+          <div className="bg-[#ffff] relative overflow-hidden min-h-[80vh] flex flex-col">
+            <div className="w-full mx-auto px-5 lg:px-10 pt-16 lg:pt-6 flex-grow">
+              <div className="relative py-20">
+                <p className="absolute text-6xl left-50 lg:left-130 top-6 lg:top-8">
+                  👋
+                </p>
+                <p className="text-4xl lg:text-8xl lg:tracking-[5px] font-extrabold uppercase text-left z-10 relative whitespace-nowrap lg:whitespace-normal">
+                  Welcome to <br />
+                  my Website
+                </p>
+              </div>
+            </div>
+            <div className=" pb-40 lg:pb-20">
+              <div className="flex justify-between items-end lg:items-center relative mx-auto px-5 lg:px-10">
+                <div className="relative">
+                  <Image
+                    src="/avatar.png"
+                    alt="Lakshya"
+                    width={100}
+                    height={100}
+                    className="lg:ml-5 w-20 lg:w-30 block mr-auto"
+                  />
+                </div>
+                <div>
+                  <p className="text-4xl font-extrabold text-right mb-5 lg:mb-0 z-10 relative">
+                    I&apos;m Lakshya
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="fixed bottom-3 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center">
+              <span className="text-xl text-black font-medium">Scroll</span>
+              <span className="text-xl text-[#FFC83D]">▼</span>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+
+      {/* BLACK SECTION - Slides up over hero */}
+      <section
+        id="mid-section"
+        className="w-full flex flex-col gap-40 bg-black text-white pt-90 pb-30 relative z-10"
+      >
+        {/* about */}
+        <div className="w-full flex flex-col lg:flex-row justify-between gap-20 px-5 lg:px-10">
+          <div className="w-full lg:w-1/2 flex flex-col space-y-10">
+            <h1 className="text-6xl font-bold">About Me</h1>
+            <p className="text-xl lg:text-4xl font-extralight">
+              I’m Lakshya Rana, a Full Stack Developer based in Delhi,
+              passionate about creating clean, modern, and impactful web
+              experiences. I love bringing ideas to life through code — turning
+              concepts into functional, visually engaging digital products.
+            </p>
+            <div className="">
+              <Image
+                src="/sign.png"
+                alt="Signature"
+                width={100}
+                height={100}
+                className="w-1/2"
+              />
+            </div>
+          </div>
+          <div className="w-full lg:w-1/2 flex lg:justify-end">
+            <Image
+              src="/personal.jpg"
+              alt="Lakshya Rana"
+              width={100}
+              height={100}
+              className="w-3/4 lg:w-auto lg:mt-30"
+            />
+          </div>
+        </div>
+
+        {/* strip */}
+        <Strip />
+
+        {/* skills */}
+        <Skills />
+      </section>
+
+      <section className="min-h-screen bg-white flex items-center justify-center px-10 pt-80 relative z-10">
+        <h1 className="text-6xl">Get in Touch</h1>
+      </section>
     </div>
   );
 }
