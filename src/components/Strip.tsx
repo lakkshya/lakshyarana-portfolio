@@ -11,10 +11,10 @@ const Strip = () => {
 
   const text1 = "Lakshya Rana • ";
   const text2 = "Personal Website • ";
-  
+
   // Repeat enough times to fill the screen and beyond
-  const repeatedText1 = text1.repeat(50);
-  const repeatedText2 = text2.repeat(50);
+  const repeatedText1 = text1.repeat(100);
+  const repeatedText2 = text2.repeat(100);
 
   return (
     <div className="relative flex flex-col bg-white/10 border-y border-gray-700 py-2 overflow-hidden">
@@ -23,19 +23,8 @@ const Strip = () => {
         <div
           className="inline-block"
           style={{
-            transform: `translateX(${scrollY * 0.2}px)`,
+            transform: `translateX(${scrollY * 0.2 - 1000}px)`,
           }}
-        >
-          <span className="text-4xl tracking-[2px] font-extrabold italic mx-4">
-            {repeatedText1}
-          </span>
-        </div>
-        <div
-          className="inline-block"
-          style={{
-            transform: `translateX(${scrollY * 0.2}px)`,
-          }}
-          aria-hidden="true"
         >
           <span className="text-4xl tracking-[2px] font-extrabold italic mx-4">
             {repeatedText1}
@@ -50,17 +39,6 @@ const Strip = () => {
           style={{
             transform: `translateX(-${scrollY * 0.2}px)`,
           }}
-        >
-          <span className="text-2xl tracking-[2px] font-extralight mx-4">
-            {repeatedText2}
-          </span>
-        </div>
-        <div
-          className="inline-block"
-          style={{
-            transform: `translateX(-${scrollY * 0.2}px)`,
-          }}
-          aria-hidden="true"
         >
           <span className="text-2xl tracking-[2px] font-extralight mx-4">
             {repeatedText2}
