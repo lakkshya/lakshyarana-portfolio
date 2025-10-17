@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Strip from "@/components/Strip";
 import Skills from "@/components/Skills";
+import Contact from "./contact/page";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -118,9 +119,7 @@ export default function Home() {
         <Skills />
       </section>
 
-      <section className="min-h-screen bg-white flex items-center justify-center px-10 pt-80 relative z-10">
-        <h1 className="text-6xl">Get in Touch</h1>
-      </section>
+      <Contact />
     </div>
   );
 }
