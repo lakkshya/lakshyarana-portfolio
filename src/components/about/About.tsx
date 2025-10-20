@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Strip from "@/components/Strip";
-import Timeline from "@/components/Timeline";
+import Strip from "./Strip";
+import Timeline from "./Timeline";
 
 const About = () => {
   return (
