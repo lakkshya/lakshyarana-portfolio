@@ -11,6 +11,20 @@
   font-display: swap;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out 0.5s both;
+}
+
 body {
   font-family: "Clash Display", sans-serif;
 }

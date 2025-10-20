@@ -9,14 +9,14 @@ import {
 
 const Contact = () => {
   return (
-    <section className="min-h-screen bg-white flex flex-col justify-center gap-16 px-10 pt-50 pb-20 relative z-10">
+    <section className="min-h-screen bg-white flex flex-col justify-center gap-16 px-5 lg:px-10 pt-50 pb-20 relative z-10">
       <div className="flex justify-center">
-        <h1 className="text-[6rem] font-bold">Get in Touch</h1>
+        <h1 className="text-[3rem] lg:text-[6rem] font-bold">Get in Touch</h1>
       </div>
 
       <div className="relative w-full flex flex-col gap-15">
         <div className="w-3/5">
-          <p className="text-6xl font-medium">
+          <p className="text-3xl lg:text-6xl font-medium">
             Got an idea brewing? Let&apos;s bring it to life!
           </p>
         </div>
@@ -24,7 +24,7 @@ const Contact = () => {
         {/* Mail */}
         <div className="flex gap-3">
           <LuCornerDownRight className="text-3xl" />
-          <p className="text-3xl">work.lakshyarana@gmail.com</p>
+          <p className="lg:text-3xl">work.lakshyarana@gmail.com</p>
         </div>
 
         {/* Social Links */}
@@ -55,7 +55,7 @@ const Contact = () => {
           alt="Signature"
           width={100}
           height={100}
-          className="w-1/5"
+          className="w-1/2 lg:w-1/5"
         />
 
         {/* Back to top */}
