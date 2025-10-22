@@ -78,8 +78,8 @@ const Skills = () => {
   }, [isPaused]);
 
   return (
-    <section className="w-full flex flex-col items-center py-20">
-      <h1 className="text-6xl font-extrabold text-center mb-20">My Skills</h1>
+    <section className="w-full flex flex-col items-center pt-50 pb-20">
+      <h1 className="text-4xl lg:text-6xl font-extrabold text-center mb-20">My Skills</h1>
 
       <div className="relative w-full lg:w-2/3 overflow-hidden">
         {/* Fade edges */}
@@ -108,7 +108,7 @@ const Skills = () => {
                   height={80}
                   draggable={false}
                   priority
-                  className="flex-shrink-0 w-20 h-20 transition-transform duration-200 hover:scale-110 select-none"
+                  className="flex-shrink-0 w-16 lg:w-20 h-16 lg:h-20 transition-transform duration-200 hover:scale-110 select-none"
                 />
               )
             )}

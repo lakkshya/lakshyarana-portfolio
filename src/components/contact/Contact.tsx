@@ -9,7 +9,7 @@ import {
 
 const Contact = () => {
   return (
-    <section className="min-h-screen bg-white flex flex-col justify-center gap-16 px-5 lg:px-10 pt-50 pb-20 relative z-10">
+    <section className="min-h-screen bg-white text-black flex flex-col justify-center gap-16 px-5 lg:px-10 pt-50 pb-20 relative z-10">
       <div className="flex justify-center">
         <h1 className="text-[3rem] lg:text-[6rem] font-bold">Get in Touch</h1>
       </div>
@@ -24,7 +24,9 @@ const Contact = () => {
         {/* Mail */}
         <div className="flex gap-3">
           <LuCornerDownRight className="text-3xl" />
-          <p className="lg:text-3xl">work.lakshyarana@gmail.com</p>
+          <a href="mailto:work.lakshyarana@gmail.com " className="lg:text-3xl hover:text-gray-600 transition-colors duration-200">
+            work.lakshyarana@gmail.com
+          </a>
         </div>
 
         {/* Social Links */}
@@ -53,8 +55,8 @@ const Contact = () => {
         <Image
           src="/sign-contact.png"
           alt="Signature"
-          width={100}
-          height={100}
+          width={500}
+          height={500}
           className="w-1/2 lg:w-1/5"
         />
 
@@ -63,8 +65,8 @@ const Contact = () => {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 rotate-90 flex items-center hover:scale-110 transition-transform duration-200 cursor-pointer"
         >
-          <span className="text-3xl font-medium text-red-600">&lt; &nbsp;</span>
-          <span className="text-xl font-medium text-red-600">Back to Top</span>
+          <span className="text-3xl font-medium">&lt; &nbsp;</span>
+          <span className="text-xl font-medium">Back to Top</span>
         </div>
       </div>
 

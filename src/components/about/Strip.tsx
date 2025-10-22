@@ -26,7 +26,7 @@ const Strip = () => {
             transform: `translateX(${scrollY * 0.2 - 1000}px)`,
           }}
         >
-          <span className="text-4xl tracking-[2px] font-extrabold italic mx-4">
+          <span className="text-2xl lg:text-4xl tracking-[2px] font-extrabold italic mx-4">
             {repeatedText1}
           </span>
         </div>
@@ -40,7 +40,7 @@ const Strip = () => {
             transform: `translateX(-${scrollY * 0.2}px)`,
           }}
         >
-          <span className="text-2xl tracking-[2px] font-extralight mx-4">
+          <span className="text-3xl lg:text-2xl tracking-[2px] font-extralight mx-4">
             {repeatedText2}
           </span>
         </div>

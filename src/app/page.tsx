@@ -3,12 +3,17 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Skills from "@/components/Skills";
-import Contact from "./contact/page";
-import About from "./about/page";
+import About from "@/components/about/About";
+import Contact from "@/components/contact/Contact";
+import Projects from "@/components/projects/Projects";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [midWidth, setMidWidth] = useState(90);
+  const [contactWidth, setContactWidth] = useState(60);
   const navRef = useRef<HTMLElement>(null);
+  const midRef = useRef<HTMLElement>(null);
+  const contactRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +31,57 @@ export default function Home() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth expansion of mid-section tied directly to scroll
+  useEffect(() => {
+    const handleMidScroll = () => {
+      if (!midRef.current) return;
+
+      const rect = midRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      const startTrigger = viewportHeight * 0.8;
+      const endTrigger = viewportHeight * 0.5;
+
+      let progress = (startTrigger - rect.top) / (startTrigger - endTrigger);
+      progress = Math.min(Math.max(progress, 0), 1);
+
+      // Slightly softer easing for real-time sync
+      const eased = progress * progress * (3 - 2 * progress);
+
+      const width = 90 + eased * 10;
+      setMidWidth(width);
+    };
+
+    window.addEventListener("scroll", handleMidScroll, { passive: true });
+    handleMidScroll();
+    return () => window.removeEventListener("scroll", handleMidScroll);
+  }, []);
+
+  // Smooth expansion of contact-section tied directly to scroll
+  useEffect(() => {
+    const handleContactScroll = () => {
+      if (!contactRef.current) return;
+
+      const rect = contactRef.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      const startTrigger = viewportHeight * 0.8;
+      const endTrigger = viewportHeight * 0.5;
+
+      let progress = (startTrigger - rect.top) / (startTrigger - endTrigger);
+      progress = Math.min(Math.max(progress, 0), 1);
+
+      const eased = progress * progress * (3 - 2 * progress);
+
+      const width = 60 + eased * 40;
+      setContactWidth(width);
+    };
+
+    window.addEventListener("scroll", handleContactScroll, { passive: true });
+    handleContactScroll();
+    return () => window.removeEventListener("scroll", handleContactScroll);
   }, []);
 
   return (
@@ -78,17 +134,42 @@ export default function Home() {
 
       {/* BLACK SECTION - Slides up over hero */}
       <section
+        ref={midRef}
         id="mid-section"
-        className="w-full flex flex-col gap-40 bg-black text-white pt-90 pb-30 relative z-10"
+        className="w-full flex flex-col gap-10 bg-black text-white pt-90 relative z-10 mx-auto"
+        style={{
+          width: `${midWidth}%`,
+          willChange: "width",
+        }}
       >
         {/* about */}
-        <About />
+        <section id="about" className="pt-10">
+          <About />
+        </section>
 
         {/* skills */}
-        <Skills />
-      </section>
+        <section id="skills">
+          <Skills />
+        </section>
 
-      <Contact />
+        {/* projects */}
+        <section id="projects">
+          <Projects />
+        </section>
+
+        {/* Contact section with ultra-smooth expansion */}
+        <section
+          ref={contactRef}
+          id="contact"
+          className="mx-auto"
+          style={{
+            width: `${contactWidth}%`,
+            willChange: "width",
+          }}
+        >
+          <Contact />
+        </section>
+      </section>
     </div>
   );
 }

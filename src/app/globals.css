@@ -25,6 +25,10 @@
   animation: fadeIn 0.4s ease-out 0.5s both;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Clash Display", sans-serif;
 }
